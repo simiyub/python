@@ -1,4 +1,7 @@
-# This is the class of the input tree. Do not edit.
+"""
+This example uses iteration to find the closest value to a target value
+in a BST with Worst and Average case O(n) T and O(1) S
+"""
 import copy
 
 
@@ -10,10 +13,10 @@ class BST:
 
 
 def find_closest_value_in_bst(tree, target):
-    return closest(copy.deepcopy(tree), target, tree.value)
+    return __closest(copy.deepcopy(tree), target, tree.value)
 
 
-def closest(tree, target, current_closest):
+def __closest(tree, target, current_closest):
     while tree is not None:
         if abs(target - current_closest) > abs(target - tree.value):
             current_closest = tree.value
