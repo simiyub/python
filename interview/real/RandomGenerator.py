@@ -9,6 +9,9 @@ if we call nextNum() 100 times we may get the following results.
 -1: 1 times 0: 22 times 1: 57 times 2: 20 times 3: 0 times
 """
 
+#TODO Potentially add another function that generates multiple random numbers using a generator
+
+
 
 class RandomGenerator:
 
@@ -52,6 +55,7 @@ class RandomGenerator:
         self._probabilities = probabilities
         self._random_numbers = random_numbers
         self._cumulative_probabilities = _cumulative_probabilities()
+        #TODO run this in next random number index instead.
 
     def random_values_used(self):
         return tuple(self._random_numbers)
