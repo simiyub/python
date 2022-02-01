@@ -1,3 +1,13 @@
+"""
+This function takes a data structure that is a BST. The nodes in the tree have a value
+and a node to the left or right or None. The left node must be less that the node’s value
+and the node to the right must be greater than or equal to the value of the BST.
+The children of each node must also be a BST.
+Each node has a maximum abd a minimum value. We validate that each node is valid and if
+we get to the end.
+O(n) T as we are traversing every node. (O)We use space on the call stack
+"""
+
 import copy
 
 

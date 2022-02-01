@@ -1,3 +1,18 @@
+"""
+This function creates a BST with the shortest depth which is the depth of the deepest node
+in the BST from a sorted array of distinct integers. We want the tree to be as balanced as possible,
+holding as close to equal as possible of the nodes in the left subtree as the right.
+These still need to satisfy valid BST requirement: every node to the left of a node should
+have a value less than the value of the current node and the node to the right must have a
+value greater than or equal to the current node.
+With a sorted array, the node in the middle of the array has roughly the same number of nodes
+either way, making it the ideal candidate to be the root node.
+We recursively select the element in the middle of the sub array on either side and make it
+the root of the sub-branch and allocate the value to the left to left of the root and the
+one to the right to the right of the root.
+O(n) T O(n) S because we will need	to visit all the elements in the array and insert all
+entries in the tree using recursion.
+"""
 from interview.medium.code.bst.BST import BST
 
 
