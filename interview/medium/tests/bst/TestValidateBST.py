@@ -1,6 +1,6 @@
 import unittest
 
-from interview.medium.code.ValidateBST import validate_bst
+from interview.medium.code.bst.ValidateBST import validate_bst
 from interview.medium.tests.Mixin import example_bst
 
 

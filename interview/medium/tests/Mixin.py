@@ -1,4 +1,4 @@
-from interview.medium.code.BST import BST
+from interview.medium.code.bst.BST import BST
 
 
 def example_bst():
