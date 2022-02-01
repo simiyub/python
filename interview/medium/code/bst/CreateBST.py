@@ -83,5 +83,3 @@ def get_minimum_value(self):
     while current.left is not None:
         current = current.left
     return current.value
-
-
