@@ -12,26 +12,46 @@ on our way to the largest value.
 """
 
 
+class TreeVisits:
+    def __init__(self, count, last_visited_node):
+        self.count = count
+        self.last_visited_node_value = last_visited_node
+
 def find_kth_largest_value(tree, value):
 
-    class TreeVisits:
-        def __init__(self, count, last_visited_node):
-            self.count = count
-            self.last_visited_node_value = last_visited_node
+
 
     visits = TreeVisits(0, -1)
-    helper(tree, value, visits)
+    traverse_from_largest(tree, value, visits)
     return visits.last_visited_node_value
 
 
-def helper(tree, value, visits):
+def find_kth_smallest_value(tree, value):
+
+    visits = TreeVisits(0, -1)
+    traverse_from_smallest(tree, value, visits)
+    return visits.last_visited_node_value
+
+
+
+def traverse_from_largest(tree, value, visits):
 
     if tree is None or visits.count >= value:
         return
-    helper(tree.right, value, visits)
+    traverse_from_largest(tree.right, value, visits)
     if visits.count < value:
         visits.count +=1
         visits.last_visited_node_value = tree.value
-        helper(tree.left, value, visits)
+        traverse_from_largest(tree.left, value, visits)
+
+def traverse_from_smallest(tree, value, visits):
+
+    if tree is None or visits.count >= value:
+        return
+    traverse_from_smallest(tree.left, value, visits)
+    if visits.count < value:
+        visits.count +=1
+        visits.last_visited_node_value = tree.value
+        traverse_from_smallest(tree.right, value, visits)
 
 

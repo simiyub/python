@@ -1,11 +1,12 @@
 import unittest
 
 from interview.medium.code.bst.BST import BST
-from interview.medium.code.bst.KthLargestValueInBST import find_kth_largest_value
+from interview.medium.code.bst.KthValueInBST import find_kth_largest_value, find_kth_smallest_value
 
 
 class TestKthLargestValueInBST(unittest.TestCase):
-    def test_find_kth_largest_value(self):
+
+    def setUp(self):
         two = BST(2)
         two.left = BST(1)
         two.right = BST(3)
@@ -18,7 +19,14 @@ class TestKthLargestValueInBST(unittest.TestCase):
         tree = BST(15)
         tree.left = five
         tree.right = twenty
-        self.assertEqual(17, find_kth_largest_value(tree, 3))  # add assertion here
+        self.tree = tree
+    def test_find_kth_largest_value(self):
+
+        self.assertEqual(17, find_kth_largest_value(self.tree, 3))
+
+    def test_find_kth_smallest_value(self):
+        self.assertEqual(15, find_kth_smallest_value(self.tree, 6))
+            # add assertion here
 
 
 if __name__ == '__main__':
