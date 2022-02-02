@@ -1,6 +1,6 @@
 import unittest
 
-from interview.medium.code.bst.CreateBSTWithMinHeight import min_height_bst
+from interview.practice.code.bst.CreateBSTWithMinHeight import min_height_bst
 
 
 class TestCreateBSTWithMinHeight(unittest.TestCase):

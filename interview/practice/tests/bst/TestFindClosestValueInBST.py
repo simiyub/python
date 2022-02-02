@@ -1,6 +1,6 @@
 import unittest
 
-from interview.easy.code import FindClosestValueInBST
+from interview.practice.code.bst import FindClosestValueInBST
 
 
 class FindClosestValueInBSTTestCase(unittest.TestCase):

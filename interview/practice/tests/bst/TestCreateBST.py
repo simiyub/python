@@ -1,5 +1,5 @@
 import unittest
-from interview.medium.code.bst import CreateBST
+from interview.practice.code.bst import CreateBST
 
 """
 unit test for CreateBST

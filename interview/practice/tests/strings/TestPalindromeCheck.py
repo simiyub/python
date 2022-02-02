@@ -1,5 +1,5 @@
 import unittest
-from interview.easy.code.strings.PalindromeCheck import is_palindrome
+from interview.practice.code.strings.PalindromeCheck import is_palindrome
 
 
 class TestPalindromeCheck(unittest.TestCase):

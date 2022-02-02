@@ -13,7 +13,7 @@ one to the right to the right of the root.
 O(n) T O(n) S because we will need	to visit all the elements in the array and insert all
 entries in the tree using recursion.
 """
-from interview.medium.code.bst.BST import BST
+from interview.practice.code.bst.BST import BST
 
 
 def min_height_bst(array):

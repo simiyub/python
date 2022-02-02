@@ -1,7 +1,7 @@
 import unittest
 
-from interview.medium.tests.Mixin import example_bst
-from interview.medium.code.bst.BSTTraversal import traverse_in_order, traverse_pre_order, traverse_post_order
+from interview.practice.tests.Mixin import example_bst
+from interview.practice.code.bst.BSTTraversal import traverse_in_order, traverse_pre_order, traverse_post_order
 
 
 class TestBSTTraversal(unittest.TestCase):

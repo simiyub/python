@@ -1,7 +1,7 @@
 import unittest
 
-from interview.medium.code.bst.BST import BST
-from interview.medium.code.bst.KthValueInBST import find_kth_largest_value, find_kth_smallest_value
+from interview.practice.code.bst.BST import BST
+from interview.practice.code.bst.KthValueInBST import find_kth_largest_value, find_kth_smallest_value
 
 
 class TestKthLargestValueInBST(unittest.TestCase):
