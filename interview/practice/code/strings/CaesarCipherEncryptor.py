@@ -14,7 +14,7 @@ O(n) T as we have to iterate through the string once and a space complexity of O
 def encrypt(string, shift_key):
     result_letters = []
     key = shift_key % 26
-    def wrapped_value(value): chr(96 + value % 122)
+    def wrapped_value(value): return chr((96 + value) % 122)
     for letter in string:
         new_letter_unicode = ord(letter) + key
         result_letters.append(chr(new_letter_unicode)
