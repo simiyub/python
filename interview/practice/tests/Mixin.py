@@ -1,3 +1,4 @@
+from interview.practice.code.Node import Node
 from interview.practice.code.bst.BST import BST
 
 
@@ -21,5 +22,30 @@ def example_bst():
     fifteen.left = thirteen
     fifteen.right = twenty_two
     ten.right = fifteen
+
+    return ten
+
+def example_node():
+    ten = Node(10)
+
+    one = Node(1)
+    two = Node(2)
+    two.children = [one]
+
+    five2 = Node(5)
+    five1 = Node(5)
+    five1.children = [two, five2]
+
+
+
+    fourteen = Node(14)
+    thirteen = Node(13)
+    thirteen.children = [fourteen]
+
+    twenty_two = Node(22)
+    fifteen = Node(15)
+    fifteen.children   = [thirteen, twenty_two]
+
+    ten.children = [five1, fifteen]
 
     return ten
