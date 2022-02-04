@@ -1,8 +1,8 @@
 
 class Node:
-    def __init__(self, name):
+    def __init__(self, value):
         self.children = []
-        self.name = name
+        self.value = value
 
     def addChild(self, name):
         self.children.append(Node(name))

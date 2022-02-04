@@ -15,7 +15,7 @@ def search(graph, values=None):
     if values is None:
         values = []
     if graph is not None:
-        values.append(graph.name)
+        values.append(graph.value)
         for child in graph.children:
             search(child, values)
 
