@@ -1,5 +1,6 @@
 from interview.practice.code.Node import Node
 from interview.practice.code.bst.BST import BST
+from interview.practice.code.graphs.AncestralTree import AncestralTree
 
 
 def example_bst():
@@ -49,3 +50,25 @@ def example_node():
     ten.children = [five1, fifteen]
 
     return ten
+
+def example_ancestral_tree():
+
+    ten = AncestralTree(10)
+    five1 = AncestralTree(5)
+    five1.ancestor = ten
+    fifteen = AncestralTree(15)
+    fifteen.ancestor = ten
+    thirteen = AncestralTree(13)
+    thirteen.ancestor = fifteen
+    fourteen = AncestralTree(14)
+    fourteen.ancestor = fifteen
+    twenty_two = AncestralTree(22)
+    twenty_two.ancestor = fifteen
+    two = AncestralTree(2)
+    two.ancestor = five1
+    five2 = AncestralTree(5)
+    five2.ancestor = five1
+    one = AncestralTree(1)
+    one.ancestor = two
+    return ten
+
