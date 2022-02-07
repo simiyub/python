@@ -15,6 +15,7 @@ value of pass count less one as the last pass is for validating that there are n
 Complexity: O(w*h) T for the width and height of the matrix / array sizes because we
 process the matrices at the beginning. O(w*h) S as we store the values to the end.
 """
+import copy
 
 
 def contains_negatives(matrix):
@@ -29,21 +30,22 @@ def indices_of_positive_values(matrix):
     indices = []
     for row in range(len(matrix)):
         for col in range(len(matrix[row])):
-            if matrix[row][col] > 0:
+            value = matrix[row][col]
+            if value > 0:
                 indices.append([row, col])
     return indices
 
 
 def adjacent_positions(row, col, matrix):
     positions = []
-    def is_negative(i, j): return matrix[i][j] < 0
-    if row > 0 and is_negative(row - 1, col):
+
+    if row > 0 :
         positions.append([row - 1, col])
-    if row < len(matrix) - 1 and is_negative(row + 1, col):
+    if row < len(matrix) - 1:
         positions.append([row + 1, col])
-    if col > 0 and is_negative(row, col - 1):
+    if col > 0:
         positions.append([row, col - 1])
-    if col < len(matrix[0]) - 1 and is_negative(row, col + 1):
+    if col < len(matrix[0]) - 1 :
         positions.append([row, col + 1])
     return positions
 
@@ -58,12 +60,16 @@ def convert_negatives(matrix):
             positions = adjacent_positions(row, col, matrix)
             for position in positions:
                 row, col = position
-                matrix[row][col] *= -1
-                queue.append([row, col])
+                value = matrix[row][col]
+                if value < 0:
+                    matrix[row][col] *= -1
+                    queue.append([row, col])
             size -= 1
         passes += 1
     return passes
 
 
-def minimum_passes(matrix):
-    return convert_negatives(matrix) if contains_negatives(matrix) else -1
+def minimum_passes(mat):
+    matrix = copy.deepcopy(mat)
+    passes = convert_negatives(matrix)
+    return -1 if contains_negatives(matrix) else passes - 1
