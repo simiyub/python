@@ -1,6 +1,6 @@
 import unittest
+
 from interview.practice.code.graphs.AncestralTree import youngest_common_ancestor, AncestralTree
-from interview.practice.tests.Mixin import example_ancestral_tree
 
 
 class TestYoungestCommonAncestor(unittest.TestCase):
