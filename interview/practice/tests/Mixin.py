@@ -72,3 +72,16 @@ def example_ancestral_tree():
     one.ancestor = two
     return ten
 
+
+def example_linked_list():
+    three = Node(3)
+    four = Node(4)
+    five = Node(5)
+    six = Node(6)
+    one = Node(1)
+    one.next = three
+    three.next = four
+    four.next = five
+    five.next = six
+    return one
+
