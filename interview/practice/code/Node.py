@@ -4,6 +4,7 @@ class Node:
         self.children = []
         self.value = value
         self.next = None
+        self.previous = None
 
     def addChild(self, name):
         self.children.append(Node(name))
