@@ -3,7 +3,7 @@ from interview.practice.code.strings.FirstNonRepeatingCharacter import first_non
 
 
 class TestFirstNonRepeatingCharacter(unittest.TestCase):
-    def test_something(self):
+    def test_first_non_repeating_character(self):
         self.assertEqual('h', first_non_repeating_character("character"))  # add assertion here
 
 
