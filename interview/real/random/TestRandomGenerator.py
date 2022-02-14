@@ -1,6 +1,6 @@
 import unittest
 
-from interview.real.RandomGenerator import RandomGenerator
+from interview.real.random.RandomGenerator import RandomGenerator
 
 """
 Tests for RandomGenerator
