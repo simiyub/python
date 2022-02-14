@@ -1,0 +1,5 @@
+interview/.idea*
+demo/.idea*
+learn/
+review_and_sort/
+*.pyc
