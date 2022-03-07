@@ -14,5 +14,5 @@ def find_sum(array, target):
         if viewed.get(complement):
             return [value, complement]
         else:
-            viewed.update({value:True})
+            viewed.update({value: True})
     return []
