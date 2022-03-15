@@ -18,7 +18,7 @@ first branch will calculate the fib, but subsequent calls to fib will use the me
 def fib_recursive(n):
     if n <= 2:
         return 1
-    return fib_recursive(n-1) + fib_recursive(n-2)
+    return fib_recursive(n - 1) + fib_recursive(n - 2)
 
 
 def fib_memoization(n, memo=None):
@@ -29,7 +29,7 @@ def fib_memoization(n, memo=None):
 
     if n <= 2:
         return 1
-    memo[n] = fib_memoization(n-1, memo) + fib_memoization(n-2, memo)
+    memo[n] = fib_memoization(n - 1, memo) + fib_memoization(n - 2, memo)
     return memo[n]
 
 
@@ -72,7 +72,7 @@ def traverse_grid(m, n, memo=None):
         return 0
     if m == 1 and n == 1:
         return 1
-    memo[key] = traverse_grid(m-1, n, memo) + traverse_grid(m, n-1, memo)
+    memo[key] = traverse_grid(m - 1, n, memo) + traverse_grid(m, n - 1, memo)
     return memo[key]
 
 
@@ -126,3 +126,86 @@ def can_sum(target_sum, numbers, memo=None):
             return True
     memo[target_sum] = False
     return False
+
+
+"""
+In this case, we take a target sum and an array of numbers as arguments. 
+We should return an array containing any combinations of elements that add up to 
+exactly the target sum. If there is no combination that adds up to the target sum, 
+we return null. If there are multiple combinations, then we just return one of them.
+The implementation in this case is similar to can sum. However, we need to return an array of 
+possible combinations. The brute force implementation returns the result array after appending 
+the result when we find a non-null result.
+This has a time complexity of O(n**m *m) and space complexity of O(m) for space.
+We then memoize it and the new solution has a
+Time complexity of O(n * m**2)
+and a space complexity of O(m**2) 
+"""
+
+
+def how_sum(target, numbers, memo=None):
+    if memo is None:
+        memo = {}
+    if target in memo:
+        return memo[target]
+    if target == 0:
+        return []
+    if target < 0:
+        return None
+    for n in numbers:
+        remainder = target - n
+        remainder_result = how_sum(remainder, numbers, memo)
+        if remainder_result is not None:
+            memo[target] = [*remainder_result, n]
+            return memo[target]
+
+    memo[target] = None
+    return None
+
+
+"""
+In this case we need to find the best way to get to the target value
+The sub problems are to find the best way to get to constituents of the target sum
+m is the target sum
+n is the size of numbers
+
+The brute force solution 
+time : O(n ** m * m) but we also have the possibility that the combination is made up of 
+1s which add up to m, hence * m
+space: O(m**2) we use at least m the height of the tree, however, we are storing a shortest combination
+for each iteration hence m **2 are maintaining
+When we add memoization, we have the following complexity:
+
+time: O(m ** 2 * n) - This is coming from running best_sum for target value for each combination
+of numbers and in addition updating the array with new combination in each iteration which is a linear
+operation.
+space: O(m ** 2) because the memo uses keys of the target but the value could be an array of length m
+ in worst case scenario
+"""
+
+
+def best_sum(target, numbers, memo=None):
+    if memo is None:
+        memo = {}
+
+    if target in memo :
+        return memo[target]
+    if target == 0:
+        return []
+    if target < 0:
+        return None
+
+    shortest_combination = None
+
+    for n in numbers:
+        remainder = target - n
+        remainder_combination = best_sum(remainder, numbers, memo)
+        if remainder_combination is not None:
+            combination = [*remainder_combination, n]
+
+            # if the combination is shorter, then update shortest
+            if shortest_combination is None or len(combination) < len(shortest_combination):
+                shortest_combination = combination
+
+    memo[target] = shortest_combination
+    return shortest_combination
