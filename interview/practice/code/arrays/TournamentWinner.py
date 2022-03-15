@@ -1,5 +1,5 @@
 """
-Requirement: For a given tournament, teams play in a round robin with each team playing a match
+Requirement: For a given tournament, teams play in a round-robin with each team playing a match
 against each of the other teams once.
 There is always a winner and no ties in each match
 and there has to be only one winner of the tournament.
@@ -19,25 +19,25 @@ and the store a map of teams (k) and their matching scores.
 
 
 def winner(competitions, results):
-    def winner(teams, score):
+    def win(teams, score):
         return teams[0] if score == 1 else teams[1]
 
-    def record_match(win, tournament):
-        if win not in tournament:
-            tournament[win] = 3
+    def record_match(winning_team, scores):
+        if winning_team not in scores:
+            scores[winning_team] = 3
         else:
-            tournament[win] += 3
-        return tournament
+            scores[winning_team] += 3
+        return scores
 
     tournament = {}
-    current_leader = winner(competitions[0], results[0])
+    current_leader = win(competitions[0], results[0])
     competitions = competitions[1:]
     tournament = record_match(current_leader, tournament)
     results = results[1:]
 
     for index in range(len(competitions)):
         competition = competitions[index]
-        win = winner(competition, results[index])
+        win = win(competition, results[index])
         tournament = record_match(win, tournament)
         if tournament[win] > tournament[current_leader]:
             current_leader = win
