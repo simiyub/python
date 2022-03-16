@@ -188,7 +188,7 @@ def best_sum(target, numbers, memo=None):
     if memo is None:
         memo = {}
 
-    if target in memo :
+    if target in memo:
         return memo[target]
     if target == 0:
         return []
@@ -209,3 +209,110 @@ def best_sum(target, numbers, memo=None):
 
     memo[target] = shortest_combination
     return shortest_combination
+
+
+"""
+Write a function that accepts a target string and an array of strings and returns a boolean
+indicating whether or not the target word can be constructed from elements of the word bank array.
+You may use elements of the word bank array as many times as you wish.
+knowing that the array of words will not changing, we take the target string.
+We know we need to shrink the target string as we go using the array of strings from we have.
+So we check for any elements that match the prefix of the word we want to construct
+or suffix and then recursively check for other prefixes and suffixes until we get to the empty
+base case or arrive at an element that is not in the array. 
+"""
+
+
+def can_construct(target, word_bank, memo=None):
+    if memo is None:
+        memo = {}
+
+    if target == '':
+        return True
+
+    if target in memo:
+        return memo[target]
+
+    for word in word_bank:
+        word_length = len(word)
+        if target[:word_length] == word:
+            if can_construct(target[word_length:], word_bank, memo):
+                memo[target] = True
+                return True
+
+        # if target[:word_length] == word:
+        #     if can_construct(target[:word_length], word_bank):
+        #         return True
+    memo[target] = False
+    return False
+
+
+"""
+Write a function that accepts a target string and an array of strings and 
+determines how many ways the target string can be constructed from the elements 
+in the array of strings. You may use the elements in the array as many times as needed.
+If we arrive at the end of our iterations with a string that cannot form the target string, 
+we should return 0. However, if we arrive at an empty string we should return 1 
+to indicate that the target string could be constructed.
+"""
+
+
+def count_construct(target, word_bank, memo=None):
+
+    if memo is None:
+        memo = {}
+
+    if target in memo:
+        return memo[target]
+    if target == '':
+        return 1
+
+    total_count = 0
+    for word in word_bank:
+        word_length = len(word)
+        if target[:word_length] == word:
+            ways = count_construct(target[word_length:], word_bank, memo)
+            total_count += ways
+
+        memo[target] = total_count
+    return total_count
+
+
+"""
+Create a function that will receive a target string and an array of strings, and return 
+an array with all the different combinations from the array of the string that can form 
+the target string. You may reuse the elements of the array as many times as possible.
+If there are no ways to generate the target string, then we return an empty array [].
+However, if we receive an empty string, we know we can always generate an empty string, 
+so we return an array of an empty array [[]]
+We optimise this solution with memoization even though this doesn't improve the time complexity 
+given that we have to go through the whole array to find all possible combinations to make the 
+target string.
+"""
+
+
+def all_constructs(target, words, memo=None):
+    if memo is None:
+        memo = {}
+    if target in memo:
+        return memo[target]
+    if target == '':
+        return [[]]
+
+    def add_word (word, ways):
+        for way in ways:
+            way.append(word)
+        return ways
+
+    constructs = []
+    for word in words:
+        if target[:len(word)] == word:
+
+            remainder = target[len(word):]
+            suffix_ways = all_constructs(remainder, words, memo)
+            target_ways = add_word(word, suffix_ways)
+            # memo[target] = target_ways
+            constructs.extend(target_ways)
+
+    memo[target] = constructs
+    return constructs
